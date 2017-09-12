@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using FE.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FE.Controllers
@@ -25,6 +23,13 @@ namespace FE.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
+        }
+
+        public IActionResult Custom()
+        {
+            ViewData["Message"] = "Your custom page.";
+            var list = new List<Student> {new Student {Id = 1, Name = "FN1"}, new Student {Id = 2, Name = "FN2"}};
+            return View(list);
         }
 
         public IActionResult Error()

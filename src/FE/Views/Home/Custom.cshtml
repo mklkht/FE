@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FE.Models.Student>
+@{
+    ViewData["Title"] = "Custom Title";
+}
+<h2>@ViewData["Message"]</h2>
+<div>
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>
+                    <a href="#">@string.Format("{0} {1}", emp.Id, emp.Name)</a>
+                </td>
+
+                <td>@Html.ActionLink("Edit", "edit", new {id = emp.Id})</td>
+            </tr>
+        }
+    </table>
+    <h2>AUTOCOMPLETE</h2>
+    <div class="ui-widget">
+        <label for="tags">Tags: </label>
+        <input id="tags">
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('table a').click(function() {
+                alert('You clicked ' + this.text + "!");
+            });
+
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
+}
